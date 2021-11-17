@@ -18,3 +18,5 @@ package-lock.json
 
 *.tingo
 *.rdb
+
+.DS_Store

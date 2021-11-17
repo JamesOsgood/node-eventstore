@@ -874,8 +874,9 @@ describe('eventstore', function () {
 
     describe('with options containing a type property with the value of', function () {
 
-      var types = ['inmemory', 'tingodb', 'mongodb', 'redis'/*, 'elasticsearch', 'azuretable', 'dynamodb'*/];
-      var streamingApiTypes = ['mongodb'];
+      var types = ['mongodb'/*, 'inmemory', 'tingodb', 'elasticsearch', 'azuretable', 'dynamodb'*/];
+      // var streamingApiTypes = ['mongodb'];
+      var streamingApiTypes = [];
       var positionTypes = ['mongodb', 'inmemory'];
 
       var token = crypto.randomBytes(16).toString('hex');
@@ -1518,9 +1519,11 @@ describe('eventstore', function () {
                         var evts = [];
                         var stream = es.streamEvents({ aggregate: 'myAgg', context: 'myCont' }, 0, 3);
                         stream.on('data', function (e) {
+                          console.log("JCO3: event")
                           evts.push(e);
                         });
                         stream.on('end', function(){
+                          console.log("JCO3:" + evts.length)
                           expect(evts.length).to.eql(3);
                           done();
                         });
